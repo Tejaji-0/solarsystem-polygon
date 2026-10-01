@@ -1,0 +1,205 @@
+/* ---- basics ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #05060a;
+  color: #f4f6ff;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* the three.js canvas lives here and fills the whole window */
+#scene {
+  position: fixed;
+  inset: 0;
+}
+
+#scene canvas {
+  display: block;
+}
+
+/* ---- loading text ---- */
+#loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  letter-spacing: 0.04em;
+  color: #aab4d4;
+  z-index: 20;
+  /* fade it out once everything is ready (handled in JS) */
+  transition: opacity 0.6s ease;
+}
+
+/* ---- intro heading top-left ---- */
+#intro {
+  position: fixed;
+  top: 28px;
+  left: 32px;
+  max-width: 420px;
+  z-index: 10;
+  pointer-events: none;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+#intro h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.05;
+  background: linear-gradient(90deg, #ffd479, #8ec5ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+#intro p {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #c5cce4;
+}
+
+/* ---- the info card on the right ---- */
+#info {
+  position: fixed;
+  top: 50%;
+  right: 32px;
+  transform: translateY(-50%);
+  width: 320px;
+  padding: 24px;
+  background: rgba(14, 18, 32, 0.82);
+  border: 1px solid rgba(140, 170, 255, 0.25);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  z-index: 15;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+#info.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(20px);
+}
+
+#info h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: #ffd479;
+}
+
+#info p {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #d6dcf0;
+}
+
+#info dl {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 14px;
+  font-size: 0.85rem;
+}
+
+#info dt {
+  color: #8ea0c8;
+}
+
+#info dd {
+  text-align: right;
+  color: #f4f6ff;
+}
+
+#info-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #8ea0c8;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#info-close:hover {
+  color: #fff;
+}
+
+/* ---- bottom control bar ---- */
+#controls {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 20px;
+  background: rgba(14, 18, 32, 0.7);
+  border: 1px solid rgba(140, 170, 255, 0.2);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  font-size: 0.85rem;
+}
+
+#controls button {
+  background: rgba(140, 170, 255, 0.12);
+  border: 1px solid rgba(140, 170, 255, 0.3);
+  color: #e7ecff;
+  padding: 7px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#controls button:hover {
+  background: rgba(140, 170, 255, 0.28);
+}
+
+#controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #c5cce4;
+}
+
+#controls input[type="range"] {
+  accent-color: #8ec5ff;
+  cursor: pointer;
+}
+
+/* ---- footer credit ---- */
+#credit {
+  position: fixed;
+  bottom: 10px;
+  right: 16px;
+  font-size: 0.72rem;
+  color: #6a7393;
+  z-index: 10;
+}
+
+#credit a {
+  color: #8ea0c8;
+}
+
+/* tighten things up on small screens */
+@media (max-width: 640px) {
+  #intro h1 { font-size: 1.9rem; }
+  #intro p { font-size: 0.82rem; }
+  #info {
+    right: 12px;
+    left: 12px;
+    width: auto;
+  }
+  #controls { gap: 10px; padding: 10px 14px; flex-wrap: wrap; justify-content: center; }
+}

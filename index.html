@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Solar System — an interactive 3D model</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪐</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- three.js is loaded straight from a CDN with an import map so there's
+       no build step. drop the folder on any static host and it just works. -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- the renderer's canvas gets appended in here -->
+  <div id="scene"></div>
+
+  <!-- little loading message while textures download -->
+  <div id="loading">Loading the planets…</div>
+
+  <header id="intro">
+    <h1>The Solar System</h1>
+    <p>Eight planets, one dwarf, and a lot of empty space. Drag to look around,
+       scroll to zoom, and click a planet to read about it.</p>
+  </header>
+
+  <!-- info card that pops up when you click a planet -->
+  <aside id="info" class="hidden">
+    <button id="info-close" aria-label="Close">&times;</button>
+    <h2 id="info-name">Planet</h2>
+    <p id="info-desc"></p>
+    <dl id="info-stats"></dl>
+  </aside>
+
+  <!-- on-screen controls -->
+  <div id="controls">
+    <button id="toggle-orbits">Hide orbits</button>
+    <button id="toggle-spin">Pause</button>
+    <label>Speed
+      <input id="speed" type="range" min="0" max="3" step="0.1" value="1" />
+    </label>
+  </div>
+
+  <footer id="credit">
+    Built with three.js for <a href="https://polygon.hackclub.com/">Hack Club Polygon</a>.
+    Textures by <a href="https://www.solarsystemscope.com/textures/">Solar System Scope</a> (CC BY 4.0).
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
